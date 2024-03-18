@@ -1,0 +1,140 @@
+*{
+	font-family: Helvetica;
+	color: rgb(0, 0, 0);
+}
+
+:root{
+	--headingSize: 35px;
+	--background-color: rgb(255, 255, 255);
+}
+
+body{
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: var(--background-color);
+}
+
+h1{
+  margin: 0;
+  letter-spacing: -1px;
+  font-size: var(--headingSize);
+}
+
+.container{
+	width: 50%;
+}
+
+span{
+  display: inline-block;
+  overflow: hidden;
+  animation: .3s swift-up ease-in-out forwards;	
+}
+
+i{
+  font-style: normal;
+  position: relative;
+  top: var(--headingSize);
+  animation: .5s swift-up ease-in-out forwards;
+}
+
+@keyframes swift-up {
+  to {
+    top: 0;
+  }
+}
+
+@media screen and (max-width: 1000px){
+	.container{
+		width: auto;
+		margin: 0 10%;
+	}
+	
+	:root{
+		--headingSize: 35px;
+	}
+}
+
+
+#email_input{
+    width: 90%;
+    border-radius: 25px;
+    border: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin: 30px 0px;
+    padding: 10px 20px;
+    border: 1px solid royalblue;
+    animation: 4s input-box ease-in-out forwards;
+}
+#password_input{
+    width: 90%;
+    border-radius: 25px;
+    border: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin: 20px 0px;
+    padding: 10px 20px;
+    border: 1px solid red;
+    animation: 4s input-box ease-in-out forwards;
+}
+@keyframes input-box {
+    0%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+  }
+.row{
+    display: flex;
+    justify-content: center;
+}
+.row button{
+    border-radius: 25px;
+    border: none;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin: 30px 0px;
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    animation: 5s proceed-btn ease-in-out forwards;
+}
+@keyframes proceed-btn {
+    0%{
+        opacity: 0;
+    }
+    80%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+  }
+
+
+.heading2{
+    display: none;
+}
+
+.footer{
+    position: fixed;
+    bottom: 17px;
+    right: 0;
+  }
+  .footer a{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    margin-right: 20px;
+    color: black;
+  }

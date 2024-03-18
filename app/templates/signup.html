@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <section class="container">
+		<h1 class="swift-up-text">Enter a realm of vibrant souls and unveil your unique identity to the world.</h1>
+        <input type="text" name="" id="email_input" placeholder="Enter your Email">
+        <div class="heading2">
+            <h1 class="swift-up-text2">Strengthen Your Digital Citadel with Our Unyielding Guardian.</h1>
+        <input type="password" name="" id="password_input" placeholder="Enter your Password">
+        </div>
+        <div class="row"><button type="submit" class="proceed" onclick="view_password()">proceed</button></div>
+        <div class="row"><button type="submit" class="proceed" >proceed</button> </div>
+	</section>
+    <script>
+        let swiftUpElements = document.querySelectorAll('.swift-up-text');
+        var proceed_btn = document.getElementsByClassName("proceed");
+        proceed_btn[1].style.display = "none";
+        swiftUpElements.forEach(elem => {
+
+            const words = elem.textContent.split(' ');
+            elem.innerHTML = '';
+
+            words.forEach((el, index) => {
+                words[index] = `<span><i>${words[index]}</i></span>`;
+            });
+
+            elem.innerHTML = words.join(' ');
+
+            const children = document.querySelectorAll('span > i');
+            children.forEach((node, index) => {
+                node.style.animationDelay = `${index * .2}s`;
+            });
+
+        });
+        function view_password() {
+            var proceed_btn = document.getElementsByClassName("proceed");
+            proceed_btn[0].style.display = "none";
+            var password_field = document.getElementsByClassName("heading2");
+            password_field[0].style.display = "block";
+            let swiftUpElements2 = document.querySelectorAll('.swift-up-text2');
+            proceed_btn[1].style.display = "block";
+            swiftUpElements2.forEach(elem => {
+
+            const words2 = elem.textContent.split(' ');
+            elem.innerHTML = '';
+
+            words2.forEach((el, index) => {
+                words2[index] = `<span><i class="hhhh">${words2[index]}</i></span>`;
+            });
+
+            elem.innerHTML = words2.join(' ');
+
+            const children2 = document.querySelectorAll('span > .hhhh');
+            children2.forEach((node, index) => {
+                node.style.animationDelay = `${index * .2}s`;
+            });
+
+            });
+        }
+    </script>
+</body>
+</html>
