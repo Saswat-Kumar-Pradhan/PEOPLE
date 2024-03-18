@@ -8,5 +8,8 @@ def index(request):
 def signup(request):
     return render(request, 'signup.html')
 
+def otp(request):
+    return render(request, 'otp.html')
+
 def signin(request):
     return render(request, 'signin.html')

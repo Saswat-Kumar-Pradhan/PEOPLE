@@ -12,7 +12,13 @@ body {
     height: 100vh;
     width: 100vw;
   }
-  
+  .logo{
+    text-align: center;
+    
+  }
+  .logo img{
+    width: 100px;
+  }
   h1 {
     text-align: center;
     text-transform: uppercase;
@@ -133,6 +139,18 @@ body {
   .row{
     display: flex;
     justify-content: center;
+    animation: 2.5s btns ease-in-out forwards;
+  }
+  @keyframes btns {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
   }
   .row .btn{
     width: 160px;

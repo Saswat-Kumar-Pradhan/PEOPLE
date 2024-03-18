@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
+</head>
+<body>
+    <section class="container">
+		<h1 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h1>
+		<h4 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h4>
+        <input type="text" name="" id="email_input" placeholder="Enter your Email">
+        <div class="row"><button type="submit" class="proceed" >proceed</button> </div>
+	</section>
+    <script>
+        let swiftUpElements = document.querySelectorAll('.swift-up-text');
+        swiftUpElements.forEach(elem => {
+
+            const words = elem.textContent.split(' ');
+            elem.innerHTML = '';
+
+            words.forEach((el, index) => {
+                words[index] = `<span><i>${words[index]}</i></span>`;
+            });
+
+            elem.innerHTML = words.join(' ');
+
+            const children = document.querySelectorAll('span > i');
+            children.forEach((node, index) => {
+                node.style.animationDelay = `${index * .2}s`;
+            });
+
+        });
+    </script>
+</body>
+</html>
