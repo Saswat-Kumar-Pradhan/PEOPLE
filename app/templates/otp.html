@@ -10,9 +10,18 @@
 <body>
     <section class="container">
 		<h1 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h1>
-		<h4 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h4>
-        <input type="text" name="" id="email_input" placeholder="Enter your Email">
-        <div class="row"><button type="submit" class="proceed" >proceed</button> </div>
+		<h4 class="swift-up-text">Verify your email with the OTP sent, ensuring secure access with your entry.</h4>
+        <div class="center">
+            <form action="" class="mt-5">
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 >
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(2)' maxlength=1 >
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(3)' maxlength=1 >
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(4)' maxlength=1 >
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(5)' maxlength=1 >
+                <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(6)' maxlength=1 >
+            </form>
+        </div>
+        <div class="row"><button type="submit" class="proceed" >verify</button> </div>
 	</section>
     <script>
         let swiftUpElements = document.querySelectorAll('.swift-up-text');
@@ -33,6 +42,19 @@
             });
 
         });
+        let digitValidate = function(ele){
+        console.log(ele.value);
+        ele.value = ele.value.replace(/[^0-9]/g,'');
+        }
+
+        let tabChange = function(val){
+            let ele = document.querySelectorAll('input');
+            if(ele[val-1].value != ''){
+            ele[val].focus()
+            }else if(ele[val-1].value == ''){
+            ele[val-2].focus()
+            }   
+        }
     </script>
 </body>
 </html>

@@ -13,3 +13,9 @@ def otp(request):
 
 def signin(request):
     return render(request, 'signin.html')
+
+def people(request):
+    return render(request, 'people.html')
+
+def peopleEdit(request):
+    return render(request, 'peopleEdit.html')

@@ -24,4 +24,6 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('otp', views.otp, name='otp'),
     path('signin', views.signin, name='signin'),
+    path('people', views.people, name='people'),
+    path('peopleEdit', views.peopleEdit, name='peopleEdit'),
 ]

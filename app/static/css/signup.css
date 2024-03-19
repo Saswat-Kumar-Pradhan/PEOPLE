@@ -46,18 +46,6 @@ i{
   }
 }
 
-@media screen and (max-width: 1000px){
-	.container{
-		width: auto;
-		margin: 0 10%;
-	}
-	
-	:root{
-		--headingSize: 35px;
-	}
-}
-
-
 #email_input{
     width: 90%;
     border-radius: 25px;
@@ -150,3 +138,37 @@ i{
     margin-right: 20px;
     color: black;
   }
+
+  .otp{
+    display:inline-block;
+    width:50px;
+    height:50px;
+    text-align:center;
+    font-weight: bold;
+    font-size: 25px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin: 5px;
+    animation: 4s input-box ease-in-out forwards;
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+
+  
+@media screen and (max-width: 1000px){
+	.container{
+		width: auto;
+		margin: 0 10%;
+	}
+	
+	:root{
+		--headingSize: 35px;
+	}
+  .otp{
+    width:40px;
+    height:40px;
+    margin: 2px;
+  }
+}
