@@ -179,11 +179,9 @@ body{
     margin: 60px auto 40px;
     font-size: 30px;
     text-align: center;
-
 }
-.about p{
+.about{
     margin: auto 50px;
-    line-height: 30px;
 }
 .row-center{
     display: flex;
