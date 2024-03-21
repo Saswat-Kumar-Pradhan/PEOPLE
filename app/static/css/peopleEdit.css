@@ -167,15 +167,12 @@ body{
     display: flex;
     justify-content: center;
 }
-.social-links a{
-    position: relative;
-}
 .social-links img{
     margin: 30px;
     width: 90px;
 }
 
-.about h1{
+.about h1, .social-links h1{
     margin: 60px auto 40px;
     font-size: 30px;
     text-align: center;
@@ -186,6 +183,19 @@ body{
 .row-center{
     display: flex;
     justify-content: center;
+}
+.social-links button{
+    width: 160px;
+    border-radius: 25px;
+    border: none;
+    text-align: center;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    margin: 10px 5px;
+    padding: 10px;
+    color: white;
+    background-color: royalblue;
 }
 .social-links a .tooltip{
     position: absolute;
@@ -237,6 +247,9 @@ body{
   .informations table tr{
     height: 50px;
   }
+  .informations input{
+    width: 80%;
+  }
   @media screen and (max-width: 720px){
     .informations{
         display: block;
@@ -254,3 +267,83 @@ body{
         width: 130px;
       }
 }
+
+
+input, select, textarea{
+  border: none;
+  background: #FFFFFF;
+  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16);
+  border-radius: 6px;
+  padding-left: 10px;
+  min-height: 25px;
+  } 
+  
+  input::placeholder, textarea::placeholder{
+    color: #b3b3b3;
+    font-weight: normal;
+  }
+  
+  input:focus, textarea:focus {
+    outline: none;
+    box-shadow: 0 4px 15px 0 rgba(0,0,0,0.36);
+  }
+
+  .social-add{
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+  }
+  .social-add input{
+    margin-right: 20px;
+    width: 400px;
+    height: 40px;
+  }
+  .social-add select{
+    margin-right: 20px;
+    width: 160px;
+  }
+  .social-add h4{
+    margin: 10px 10px 0 0;
+  }
+  .toggle-switch {
+    position: relative;
+    width: 60px;
+    height: 28px;
+  }
+  
+  .toggle-switch input {
+    display: none;
+  }
+  
+  .toggle-switch label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.4s;
+  }
+  
+  .toggle-switch label:after {
+    content: "";
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.4s;
+  }
+  
+  .toggle-switch input:checked + label {
+    background-color: #2196F3;
+  }
+  
+  .toggle-switch input:checked + label:after {
+    transform: translateX(32px);
+  }
+  
