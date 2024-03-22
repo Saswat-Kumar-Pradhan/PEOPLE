@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,20 +8,24 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/signup.css' %}">
 </head>
+
 <body>
     <section class="container">
-		<h1 class="swift-up-text">The Email to Access Your Digital Realm with Seamless Gateway Solutions.</h1>
-        <input type="text" name="" id="email_input" placeholder="Enter your Email">
-        <div class="heading2">
-            <h1 class="swift-up-text2">Unlocking Your Digital Identity, Enter your Security Key One.</h1>
-        <input type="password" name="" id="password_input" placeholder="Enter your Password">
-        </div>
-        <div class="row"><button type="submit" class="proceed" onclick="view_password()">next</button></div>
-        <div class="row"><button type="submit" class="proceed" >proceed</button> </div>
+        <form action="">
+            {% csrf_token %}
+            <h1 class="swift-up-text">The Email to Access Your Digital Realm with Seamless Gateway Solutions.</h1>
+            <input type="text" name="" id="email_input" placeholder="Enter your Email">
+            <div class="heading2">
+                <h1 class="swift-up-text2">Unlocking Your Digital Identity, Enter your Security Key One.</h1>
+                <input type="password" name="" id="password_input" placeholder="Enter your Password">
+            </div>
+            <div class="row"><button type="submit" class="proceed" onclick="view_password()">next</button></div>
+            <div class="row"><button type="submit" class="proceed">proceed</button> </div>
+        </form>
         <div class="footer">
             <a href="{% url 'signup' %}">Dont Have Your Access?</a>
         </div>
-	</section>
+    </section>
     <script>
         let swiftUpElements = document.querySelectorAll('.swift-up-text');
         var proceed_btn = document.getElementsByClassName("proceed");
@@ -51,22 +56,23 @@
             proceed_btn[1].style.display = "block";
             swiftUpElements2.forEach(elem => {
 
-            const words2 = elem.textContent.split(' ');
-            elem.innerHTML = '';
+                const words2 = elem.textContent.split(' ');
+                elem.innerHTML = '';
 
-            words2.forEach((el, index) => {
-                words2[index] = `<span><i class="hhhh">${words2[index]}</i></span>`;
-            });
+                words2.forEach((el, index) => {
+                    words2[index] = `<span><i class="hhhh">${words2[index]}</i></span>`;
+                });
 
-            elem.innerHTML = words2.join(' ');
+                elem.innerHTML = words2.join(' ');
 
-            const children2 = document.querySelectorAll('span > .hhhh');
-            children2.forEach((node, index) => {
-                node.style.animationDelay = `${index * .2}s`;
-            });
+                const children2 = document.querySelectorAll('span > .hhhh');
+                children2.forEach((node, index) => {
+                    node.style.animationDelay = `${index * .2}s`;
+                });
 
             });
         }
     </script>
 </body>
+
 </html>

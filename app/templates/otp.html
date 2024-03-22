@@ -9,8 +9,8 @@
 </head>
 <body>
     <section class="container">
-		<h1 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h1>
-		<h4 class="swift-up-text">Verify your email with the OTP sent, ensuring secure access with your entry.</h4>
+        <h1 class="swift-up-text">Unlocking security and safeguarding your digital identity with confidence.</h1>
+        <h4 class="swift-up-text">Verify your email with the OTP sent, ensuring secure access with your entry.</h4>
         <div class="center">
             <form action="" class="mt-5">
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(1)' maxlength=1 >
@@ -21,40 +21,57 @@
                 <input class="otp" type="text" oninput='digitValidate(this)' onkeyup='tabChange(6)' maxlength=1 >
             </form>
         </div>
-        <div class="row"><button type="submit" class="proceed" >verify</button> </div>
-	</section>
+        
+        <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="otp" id="final_otp">
+            <div class="row"><button type="submit" class="proceed" >verify</button></div>
+        </form>
+    </section>
     <script>
         let swiftUpElements = document.querySelectorAll('.swift-up-text');
+        let final_otp = document.querySelector('#final_otp'); // Select the final_otp input field
         swiftUpElements.forEach(elem => {
-
             const words = elem.textContent.split(' ');
             elem.innerHTML = '';
-
             words.forEach((el, index) => {
                 words[index] = `<span><i>${words[index]}</i></span>`;
             });
-
             elem.innerHTML = words.join(' ');
-
             const children = document.querySelectorAll('span > i');
             children.forEach((node, index) => {
                 node.style.animationDelay = `${index * .2}s`;
             });
-
         });
+    
         let digitValidate = function(ele){
-        console.log(ele.value);
-        ele.value = ele.value.replace(/[^0-9]/g,'');
+            ele.value = ele.value.replace(/[^0-9]/g,'');
         }
-
+    
         let tabChange = function(val){
             let ele = document.querySelectorAll('input');
             if(ele[val-1].value != ''){
-            ele[val].focus()
-            }else if(ele[val-1].value == ''){
-            ele[val-2].focus()
+                ele[val].focus();
+            } else if(ele[val-1].value == ''){
+                ele[val-2].focus();
             }   
         }
+    
+        // Function to update final_otp input field value when user types
+        let updateFinalOTP = function() {
+            let otp = '';
+            let otpInputs = document.querySelectorAll('.otp'); // Corrected the class name here
+            otpInputs.forEach(input => {
+                otp += input.value;
+            });
+            final_otp.value = otp; // Update final_otp input field value
+        };
+    
+        // Attach event listeners to OTP input fields to trigger updateFinalOTP function
+        let otpInputs = document.querySelectorAll('.otp'); // Corrected the class name here
+        otpInputs.forEach(input => {
+            input.addEventListener('input', updateFinalOTP);
+        });
     </script>
 </body>
 </html>
