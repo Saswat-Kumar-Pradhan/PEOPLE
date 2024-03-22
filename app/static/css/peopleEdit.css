@@ -12,9 +12,10 @@ body{
     top: 10px;
     right: 5px;
 }
-.options i{
+.options a{
     font-size: 25px;
     margin-right: 20px;
+    color: black;
 }
 .main-container{
     display: flex;
@@ -272,15 +273,15 @@ body{
 
 input, select, textarea{
   border: none;
-  background: #FFFFFF;
-  box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16);
+  background: #e3e3e3;
+  /* box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16); */
   border-radius: 6px;
   padding-left: 10px;
   min-height: 25px;
   } 
   
   input::placeholder, textarea::placeholder{
-    color: #b3b3b3;
+    color: #848484;
     font-weight: normal;
   }
   

@@ -11,15 +11,15 @@
 
 <body>
     <section class="container">
-        <form action="">
+        <form action="" method="post">
             {% csrf_token %}
             <h1 class="swift-up-text">The Email to Access Your Digital Realm with Seamless Gateway Solutions.</h1>
-            <input type="text" name="" id="email_input" placeholder="Enter your Email">
+            <input type="text" name="email" id="email_input" placeholder="Enter your Email">
             <div class="heading2">
                 <h1 class="swift-up-text2">Unlocking Your Digital Identity, Enter your Security Key One.</h1>
-                <input type="password" name="" id="password_input" placeholder="Enter your Password">
+                <input type="password" name="password" id="password_input" placeholder="Enter your Password">
             </div>
-            <div class="row"><button type="submit" class="proceed" onclick="view_password()">next</button></div>
+            <div class="row"><button type="submit" class="proceed" onclick="view_password(event)">next</button></div>
             <div class="row"><button type="submit" class="proceed">proceed</button> </div>
         </form>
         <div class="footer">
@@ -47,7 +47,8 @@
             });
 
         });
-        function view_password() {
+        function view_password(event) {
+            event.preventDefault();
             var proceed_btn = document.getElementsByClassName("proceed");
             proceed_btn[0].style.display = "none";
             var password_field = document.getElementsByClassName("heading2");

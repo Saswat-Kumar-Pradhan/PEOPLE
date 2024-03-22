@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from .forms import RegistrationForm
 from django.http import HttpResponseServerError
+from django.contrib.auth import authenticate, login
+from django.contrib import messages
 from django.core.mail import send_mail
 from .models import *
 import traceback
@@ -59,7 +61,7 @@ def otp(request):
                 del request.session['signup_form_data']
                 del request.session['otp']
 
-                return redirect('peopleEdit')
+                return redirect('index')
             except Exception as e:
                 traceback.print_exc()
                 return HttpResponseServerError("An unexpected error occurred while saving data.")
@@ -67,10 +69,36 @@ def otp(request):
     return render(request, 'otp.html')
 
 def signin(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        print("hello")
+        try:
+            profile = Profile.objects.get(email=email)
+            print("hello2")
+        except Profile.DoesNotExist:
+            profile = None
+        if profile and profile.password == password:
+            request.session['profile_id'] = profile.id
+            return redirect('peopleEdit')  # Redirect to dashboard after successful login
+        else:
+            messages.error(request, 'Invalid email or password.')
+
     return render(request, 'signin.html')
 
 def people(request):
     return render(request, 'people.html')
 
 def peopleEdit(request):
-    return render(request, 'peopleEdit.html')
+    if 'profile_id' not in request.session:
+        return redirect('signin')
+    try:
+        profile_id = request.session['profile_id']
+        profile = Profile.objects.get(id=profile_id)
+    except (KeyError, Profile.DoesNotExist):
+        return redirect('signin')
+    return render(request, 'peopleEdit.html', {'profile': profile})
+
+def logout(request):
+    del request.session['profile_id']
+    return redirect('index')
