@@ -58,6 +58,7 @@ body{
   height: 500px;
   border-radius: 10px;
   overflow: hidden;
+  /* border: 1px solid grey; */
   position: relative;
 }
 
@@ -345,5 +346,50 @@ input, select, textarea{
   
   .toggle-switch input:checked + label:after {
     transform: translateX(32px);
+  }
+  
+
+
+  #picture__input1, #picture__input2, #picture__input3, #picture__input4 {
+    display: none;
+  }
+  
+  .picture {
+    width: 50%;
+    aspect-ratio: 1;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    border: 2px dashed currentcolor;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+    outline: none;
+    overflow: hidden;
+    margin: 2%;
+  }
+  
+  .picture:hover {
+    color: #777;
+    background: #ccc;
+  }
+  
+  .picture:active {
+    border-color: turquoise;
+    color: turquoise;
+    background: #eee;
+  }
+  
+  .picture:focus {
+    color: #777;
+    background: #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .picture__img {
+    max-width: 100%;
   }
   
