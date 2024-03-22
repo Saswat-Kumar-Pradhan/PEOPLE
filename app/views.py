@@ -97,6 +97,8 @@ def peopleEdit(request):
         profile = Profile.objects.get(id=profile_id)
     except (KeyError, Profile.DoesNotExist):
         return redirect('signin')
+    if request.method == 'POST':
+        pass
     return render(request, 'peopleEdit.html', {'profile': profile})
 
 def logout(request):
