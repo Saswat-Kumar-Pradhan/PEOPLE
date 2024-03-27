@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, ProfileForm
 from django.http import HttpResponseServerError
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
@@ -98,7 +98,16 @@ def peopleEdit(request):
     except (KeyError, Profile.DoesNotExist):
         return redirect('signin')
     if request.method == 'POST':
-        pass
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        print("out")
+        if form.is_valid():
+            print("in")
+            form.save()
+            messages.success(request, 'Details Saved Successfully.')
+            return redirect('people')
+        else:
+            print(form.errors)
+            messages.error(request, 'Please correct the errors below.')
     return render(request, 'peopleEdit.html', {'profile': profile})
 
 def logout(request):

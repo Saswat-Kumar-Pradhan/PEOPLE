@@ -22,7 +22,7 @@
             <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </header>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="main-container">
             <div class="carousel">
@@ -77,7 +77,7 @@
                     <select name="" id="">
                         <option value="">Email</option>
                     </select>
-                    <input type="url" name="email" id="" value="{{ profile.email }}">
+                    <input type="email" name="email" id="" value="{{ profile.email }}">
                     <h4>visibility</h4>
                     <div class="toggle-switch">
                         <input type="checkbox" id="visibility-toggle">
@@ -127,6 +127,8 @@
                 </tr>
             </table>
         </section>
+
+        <div class="row-center"><button class="main-submit">Save</button></div>
     </form>
 
     <script>

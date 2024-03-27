@@ -8,3 +8,10 @@ class RegistrationForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['name', 'email', 'password']
+
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ['password']
+        fields = '__all__'
