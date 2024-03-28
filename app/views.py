@@ -4,6 +4,7 @@ from django.http import HttpResponseServerError
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.core.mail import send_mail
+from datetime import datetime
 from .models import *
 import traceback
 import random
@@ -84,8 +85,15 @@ def signin(request):
 
     return render(request, 'signin.html')
 
-def people(request):
-    return render(request, 'people.html')
+def people(request, profile_id):
+    profile = Profile.objects.get(id=profile_id)
+    if profile.dob:
+        dob_year = profile.dob.year
+        current_year = datetime.now().year
+        age = current_year - dob_year
+    else:
+        age = None
+    return render(request, 'people.html', {'profile': profile, 'age': age})
 
 def peopleEdit(request):
     if 'profile_id' not in request.session:
@@ -100,7 +108,7 @@ def peopleEdit(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Details Saved Successfully.')
-            return redirect('people')
+            return redirect('people',profile_id)
         else:
             print(form.errors)
             messages.error(request, 'Please correct the errors below.')
