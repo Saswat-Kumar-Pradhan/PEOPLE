@@ -28,21 +28,37 @@
             <div class="carousel">
                 <div class="row-center">
                   <label class="picture" for="picture__input1" tabIndex="0">
-                    <span id="picture__image1" class="picture__image"></span>
+                    <span id="picture__image1" class="picture__image">
+                        {% if profile.image1 %}
+                            <img class="picture__img" src="{{ profile.image1.url }}" alt="">
+                        {% endif %}
+                    </span>
                   </label>
                   <input type="file" name="image1" id="picture__input1">
                   <label class="picture" for="picture__input2" tabIndex="0">
-                    <span id="picture__image2" class="picture__image"></span>
+                    <span id="picture__image2" class="picture__image">
+                        {% if profile.image2 %}
+                            <img class="picture__img" src="{{ profile.image2.url }}" alt="">
+                        {% endif %}
+                    </span>
                   </label>
                   <input type="file" name="image2" id="picture__input2">
                 </div>
                 <div class="row-center">
                   <label class="picture" for="picture__input3" tabIndex="0">
-                    <span id="picture__image3" class="picture__image"></span>
+                    <span id="picture__image3" class="picture__image">
+                        {% if profile.image3 %}
+                            <img class="picture__img" src="{{ profile.image3.url }}" alt="">
+                        {% endif %}
+                    </span>
                   </label>
                   <input type="file" name="image3" id="picture__input3">
                   <label class="picture" for="picture__input4" tabIndex="0">
-                    <span id="picture__image4" class="picture__image"></span>
+                    <span id="picture__image4" class="picture__image">
+                        {% if profile.image4 %}
+                            <img class="picture__img" src="{{ profile.image4.url }}" alt="">
+                        {% endif %}
+                    </span>
                   </label>
                   <input type="file" name="image4" id="picture__input4">
                 </div>
@@ -53,20 +69,27 @@
                     <input class="eh1" type="text" name="name" id="" value="{{ profile.name }}" placeholder="Enter Your Name">
                     <input class="eh2" type="text" name="profession" id="" value="{{ profile.profession|default:'' }}" placeholder="Your Profession"><br><br>
                     <select name="gender" id="">
-                        <option value="">Gender</option>
-                        <option value="">Male</option>
-                        <option value="">Female</option>
-                        <option value="">Not to say</option>
-                    </select> |
-                    <input type="date" name="dob" id=""> <i class="fa-solid fa-arrow-left"></i> Date Of Birth<br>
-                    <textarea name="description" id="" rows="5" placeholder="Profile Description"></textarea>
+                        <option value="" {% if not profile.gender %} selected {% endif %}>Gender</option>
+                        <option value="Male" {% if profile.gender == 'Male' %} selected {% endif %}>Male</option>
+                        <option value="Female" {% if profile.gender == 'Female' %} selected {% endif %}>Female</option>
+                        <option value="Other" {% if profile.gender == 'Other' %} selected {% endif %}>Not to say</option>
+                    </select>
+                    {% if profile.dob %}
+                        {% with profile.dob|date:"Y-m-d" as dob_formatted %}
+                            <input type="date" name="dob" id="" value="{{ dob_formatted }}">
+                        {% endwith %}
+                    {% else %}
+                        <input type="date" name="dob" id="" value="">
+                    {% endif %}
+                    <i class="fa-solid fa-arrow-left"></i> Date Of Birth<br>
+                    <textarea name="description" id="" rows="5" placeholder="Profile Description">{{ profile.description|default:'' }}</textarea>
                     Do you Have a Portfolio ?
                     <select name="portfolio_availability" id="">
-                        <option value="">No</option>
-                        <option value="">Yes</option>
+                        <option value="0" {% if not profile.portfolio_availability %} selected {% endif %}>No</option>
+                        <option value="1" {% if profile.portfolio_availability %} selected {% endif %}>Yes</option>
                     </select>
-                    <input type="text" name="portfolio_url" id="" placeholder="Enter Portfolio URL"><br>
-                    <input class="address" type="text" name="current_address" id="" placeholder="Your Current Address">
+                    <input type="text" name="portfolio_url" id="" value="{{ profile.portfolio_url|default:'' }}" placeholder="Enter Portfolio URL"><br>
+                    <input class="address" type="text" name="current_address" id="" value="{{ profile.current_address|default:'' }}" placeholder="Your Current Address">
                 </div>
             </div>
         </div>
@@ -103,7 +126,7 @@
         </section>
         <section class="about">
             <h1>About You ?</h1>
-            <textarea id="editor" name="about" placeholder="Enter About"></textarea>
+            <textarea id="editor" name="about" placeholder="Enter About">{{ profile.about|default:'' }}</textarea>
         </section>
         <section class="informations">
             <table>
@@ -113,17 +136,17 @@
                 </tr>
                 <tr>
                     <td>Languages</td>
-                    <td><input type="text" name="languages" id="" placeholder="Languages You Speak"></td>
+                    <td><input type="text" name="languages" id="" value="{{ profile.languages|default:'' }}" placeholder="Languages You Speak"></td>
                 </tr>
             </table>
             <table>
                 <tr>
                     <td>Citizenship</td>
-                    <td><input type="text" name="citizenship" id="" placeholder="Your Citizenship"></td>
+                    <td><input type="text" name="citizenship" id="" value="{{ profile.citizenship|default:'' }}" placeholder="Your Citizenship"></td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><input type="text" name="permanent_address" id="" placeholder="permanent address"></td>
+                    <td><input type="text" name="permanent_address" id="" value="{{ profile.permanent_address|default:'' }}" placeholder="permanent address"></td>
                 </tr>
             </table>
         </section>
@@ -137,7 +160,7 @@
           const inputFile = document.getElementById(inputId);
           const pictureImage = document.getElementById(imageElementId);
           const pictureImageTxt = "Choose an image";
-          pictureImage.innerHTML = pictureImageTxt;
+          //pictureImage.innerHTML = pictureImageTxt;
       
           inputFile.addEventListener("change", function (e) {
             const inputTarget = e.target;

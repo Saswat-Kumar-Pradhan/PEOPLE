@@ -72,10 +72,8 @@ def signin(request):
     if request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
-        print("hello")
         try:
             profile = Profile.objects.get(email=email)
-            print("hello2")
         except Profile.DoesNotExist:
             profile = None
         if profile and profile.password == password:
@@ -99,9 +97,7 @@ def peopleEdit(request):
         return redirect('signin')
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
-        print("out")
         if form.is_valid():
-            print("in")
             form.save()
             messages.success(request, 'Details Saved Successfully.')
             return redirect('people')
