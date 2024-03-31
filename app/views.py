@@ -93,7 +93,7 @@ def people(request, profile_id):
         age = current_year - dob_year
     else:
         age = None
-    return render(request, 'people.html', {'profile': profile, 'age': age})
+    return render(request, 'people.html', {'profile': profile, 'age': age, 'first_name': profile.name.split()[0]})
 
 def peopleEdit(request):
     if 'profile_id' not in request.session:

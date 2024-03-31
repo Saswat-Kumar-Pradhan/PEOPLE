@@ -14,8 +14,13 @@
     <header>
         <img class="logo" src="{% static 'images/logo.png' %}" alt="">
         <div class="options">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <i class="fa-solid fa-ellipsis-vertical"></i>
+            <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+            {% if 'profile_id' not in request.session %}
+                <a href="{% url 'signin' %}"><i class="fa-solid fa-right-to-bracket"></i></a>
+            {% else %}
+                <a href=""><i class="fa-solid fa-user"></i></a>
+                <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+            {% endif %}
         </div>
     </header>
     <div class="main-container">
@@ -43,6 +48,18 @@
         </div>
         <div class="responsive-row">
             <div class="details">
+
+
+                <div class="popup">
+                    <button class="close">
+                        X
+                    </button>
+                    <h3>{{ first_name  }}'s Portfolio</h3>
+                    <a href="{{ profile.portfolio_url }}">{{ profile.portfolio_url }}</a>
+                    <button>explore</button>
+                </div>
+
+
                 <h1>{{ profile.name }}</h1>
                 <h2>{{ profile.profession|default:'' }}</h2>
                 <h4>
@@ -67,7 +84,7 @@
             </div>
         </div>
     </div>
-    <section class="social-links">
+    <!-- <section class="social-links">
         <a href="">
             <div class="row-center">
                 <div class="tooltip">
@@ -111,9 +128,9 @@
                  </div>
             </div>
             <img src="{% static 'images/whatsapp.png' %}" alt=""></a>
-    </section>
+    </section> -->
     <section class="about">
-        <h1>About {{ profile.name}} ?</h1>
+        <h1>About {{ first_name }} ?</h1>
         <div class="about-details">{{ profile.about|safe|default:'' }}</div>
     </section>
     <section class="informations">
@@ -182,6 +199,25 @@
             changeSlide(false);
             restart();
         });
+
+        let popup = document.querySelector(".popup");
+let close = document.querySelector(".popup .close");
+
+popup.style.display = "block";
+popup.style.visibility = "hidden";
+setTimeout(() => {
+    popup.style.visibility = "visible";
+    popup.style.opacity = "1";
+}, 1000);
+
+close.addEventListener("click", () => {
+    popup.style.opacity = "0";
+    popup.style.visibility = "hidden";
+    setTimeout(() => {
+        popup.style.display = "none";
+    }, 1000);
+});
+
 
     </script>
 </body>
