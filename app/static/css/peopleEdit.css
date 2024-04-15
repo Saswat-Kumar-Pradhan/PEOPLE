@@ -408,3 +408,27 @@ input, select, textarea{
     background-color: green;
   }
   
+
+  .options .tooltip {
+    position: relative;
+}
+
+  .options .tooltip:before {
+    content: attr(data-tooltip);
+    position: absolute;
+    background-color: #333;
+    color: #ffffff;
+    font-size: 17px;
+    padding: 5px;
+    border-radius: 5px;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+  .options .tooltip:hover:before {
+    opacity: 1;
+}

@@ -18,8 +18,8 @@
     <header>
         <img class="logo" src="{% static 'images/logo.png' %}" alt="">
         <div class="options">
-            <a href="#"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+            <a href="#" class="tooltip" data-tooltip="Search People"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="{% url 'logout' %}" class="tooltip" data-tooltip="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
         </div>
     </header>
     <form action="" method="post" enctype="multipart/form-data">

@@ -14,12 +14,12 @@
     <header>
         <img class="logo" src="{% static 'images/logo.png' %}" alt="">
         <div class="options">
-            <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="" class="tooltip" data-tooltip="Search People"><i class="fa-solid fa-magnifying-glass"></i></a>
             {% if 'profile_id' not in request.session %}
-                <a href="{% url 'signin' %}"><i class="fa-solid fa-right-to-bracket"></i></a>
+                <a href="{% url 'signin' %}" class="tooltip" data-tooltip="Signin"><i class="fa-solid fa-right-to-bracket"></i></a>
             {% else %}
-                <a href=""><i class="fa-solid fa-user"></i></a>
-                <a href="{% url 'logout' %}"><i class="fa-solid fa-right-from-bracket"></i></a>
+                <a href="" class="tooltip" data-tooltip="Your Profile"><i class="fa-solid fa-user"></i></a>
+                <a href="{% url 'logout' %}" class="tooltip" data-tooltip="Logout"><i class="fa-solid fa-right-from-bracket"></i></a>
             {% endif %}
         </div>
     </header>
@@ -55,8 +55,9 @@
                         X
                     </button>
                     <h3>{{ first_name  }}'s Portfolio</h3>
-                    <a href="{{ profile.portfolio_url }}">{{ profile.portfolio_url }}</a>
-                    <button>explore</button>
+                    <iframe src="{{ profile.portfolio_url }}" scrolling="no"></iframe>
+                    <a href="{{ profile.portfolio_url }}" target="_blank">{{ profile.portfolio_url }}</a><br>
+                    <br><br><a href="{{ profile.portfolio_url }}" class="popup-btn" target="_blank">explore</a><br><br><br>
                 </div>
 
 
