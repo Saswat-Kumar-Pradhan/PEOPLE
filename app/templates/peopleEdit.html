@@ -85,8 +85,8 @@
                     <textarea name="description" id="" rows="5" placeholder="Profile Description">{{ profile.description|default:'' }}</textarea>
                     Do you Have a Portfolio ?
                     <select name="portfolio_availability" id="">
-                        <option value="0" {% if not profile.portfolio_availability %} selected {% endif %}>No</option>
-                        <option value="1" {% if profile.portfolio_availability %} selected {% endif %}>Yes</option>
+                        <option value="False" {% if not profile.portfolio_availability %} selected {% endif %}>No</option>
+                        <option value="True" {% if profile.portfolio_availability %} selected {% endif %}>Yes</option>
                     </select>
                     <input type="text" name="portfolio_url" id="" value="{{ profile.portfolio_url|default:'' }}" placeholder="Enter Portfolio URL"><br>
                     <input class="address" type="text" name="current_address" id="" value="{{ profile.current_address|default:'' }}" placeholder="Your Current Address">

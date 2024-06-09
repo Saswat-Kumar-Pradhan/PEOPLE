@@ -23,8 +23,77 @@ def signup(request):
                 otp = random.randint(100000, 999999)
 
                 # Prepare email subject and message
-                sub = 'Blog Post User Verification'
-                msg = f'<p>Your OTP: <b>{otp}</b></p>'
+                sub = 'User Verification'
+                msg = f'''
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                            <style>
+                                body {{
+                                    font-family: Arial, sans-serif;
+                                    color: #333;
+                                    line-height: 1.6;
+                                    padding: 20px;
+                                }}
+                                .container {{
+                                    max-width: 600px;
+                                    margin: auto;
+                                    padding: 20px;
+                                    background-color: #f9f9f9;
+                                    border-radius: 10px;
+                                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                                }}
+                                .header {{
+                                    text-align: center;
+                                    margin-bottom: 20px;
+                                }}
+                                .header h1{{
+                                    font-size: 40px;
+                                    font-weight: bolder;
+                                }}
+                                .otp {{
+                                    font-size: 24px;
+                                    font-weight: bold;
+                                    color: #007bff;
+                                    text-align: center;
+                                }}
+                                .button {{
+                                    display: inline-block;
+                                    margin-top: 20px;
+                                    padding: 10px 20px;
+                                    background-color: #007bff;
+                                    color: white;
+                                    text-decoration: none;
+                                    border-radius: 5px;
+                                }}
+                                .footer {{
+                                    margin-top: 30px;
+                                    text-align: center;
+                                    color: #666;
+                                    font-size: 12px;
+                                }}
+                            </style>
+                        </head>
+                        <body>
+                            <div class="container">
+                                <div class="header">
+                                    <h1>PEOPLE</h1>
+                                    <p>Secure your account with this one-time password (OTP).</p>
+                                </div>
+                                <p>Hello,</p>
+                                <p>Thank you for joining us! To complete your registration and secure your account, please use the following OTP:</p>
+                                <p class="otp">{otp}</p>
+                                <p>Enter this code on the verification page to confirm your identity.</p>
+                                <center><a href="https://www.yourwebsite.com/verify" class="button">Verify Now</a></center>
+                                <div class="footer">
+                                    <p>If you did not request this verification, please ignore this email.</p>
+                                    <p>&copy; 2024 . PEOPLE . All rights reserved.</p>
+                                </div>
+                            </div>
+                        </body>
+                        </html>
+                        '''
+
                 from_email = 'saswatkumar059@gmail.com'
                 
                 # Send email
@@ -51,7 +120,7 @@ def otp(request):
         return redirect('signup')
 
     if request.method == 'POST':
-        user_entered_otp = request.POST.get('otp')  # Assuming OTP is submitted via a form field named 'otp'
+        user_entered_otp = request.POST.get('otp')
         if user_entered_otp == str(otp):
             try:
                 profile = Profile.objects.create(
@@ -91,6 +160,8 @@ def people(request, profile_id):
         dob_year = profile.dob.year
         current_year = datetime.now().year
         age = current_year - dob_year
+        if (datetime.now().month, datetime.now().day) < (profile.dob.month, profile.dob.day):
+            age -= 1
     else:
         age = None
     return render(request, 'people.html', {'profile': profile, 'age': age, 'first_name': profile.name.split()[0]})
@@ -106,6 +177,7 @@ def peopleEdit(request):
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES, instance=profile)
         if form.is_valid():
+            print(form.cleaned_data.get('portfolio_availability'))
             form.save()
             messages.success(request, 'Details Saved Successfully.')
             return redirect('people',profile_id)
