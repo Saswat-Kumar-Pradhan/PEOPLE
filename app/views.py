@@ -84,7 +84,7 @@ def signup(request):
                                 <p>Thank you for joining us! To complete your registration and secure your account, please use the following OTP:</p>
                                 <p class="otp">{otp}</p>
                                 <p>Enter this code on the verification page to confirm your identity.</p>
-                                <center><a href="https://www.yourwebsite.com/verify" class="button">Verify Now</a></center>
+                                <center><a href="https://www.saswatkumar.com/verify" class="button">Verify Now</a></center>
                                 <div class="footer">
                                     <p>If you did not request this verification, please ignore this email.</p>
                                     <p>&copy; 2024 . PEOPLE . All rights reserved.</p>
@@ -185,6 +185,32 @@ def peopleEdit(request):
             print(form.errors)
             messages.error(request, 'Please correct the errors below.')
     return render(request, 'peopleEdit.html', {'profile': profile})
+
+def search(request):
+    query = request.GET.get('query', '')
+    if 'profile_id' not in request.session:
+        profile = Profile.objects.get(id=3)
+    else:
+        profile_id = request.session['profile_id']
+        profile = Profile.objects.get(id=profile_id)
+
+    profiles = Profile.objects.all()
+    if query:
+        profiles = profiles.filter(name__icontains=query) | \
+                   profiles.filter(email__icontains=query) | \
+                   profiles.filter(profession__icontains=query) | \
+                   profiles.filter(current_address__icontains=query) | \
+                   profiles.filter(permanent_address__icontains=query) | \
+                   profiles.filter(citizenship__icontains=query) | \
+                   profiles.filter(languages__icontains=query) | \
+                   profiles.filter(about__icontains=query)
+
+    context = {
+        'profile': profile,
+        'profiles': profiles,
+        'query': query,
+    }
+    return render(request, 'search.html', context)
 
 def logout(request):
     del request.session['profile_id']

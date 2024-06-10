@@ -28,6 +28,7 @@ urlpatterns = [
     path('signin', views.signin, name='signin'),
     path('people/<int:profile_id>', views.people, name='people'),
     path('peopleEdit', views.peopleEdit, name='peopleEdit'),
+    path('search', views.search, name='search'),
     path('logout', views.logout, name='logout'),
 ]
 if settings.DEBUG:

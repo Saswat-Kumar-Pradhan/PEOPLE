@@ -14,7 +14,7 @@
     <header>
         <img class="logo" src="{% static 'images/logo.png' %}" alt="">
         <div class="options">
-            <a href="" class="tooltip" data-tooltip="Search People"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a href="{% url 'search' %}" class="tooltip" data-tooltip="Search People"><i class="fa-solid fa-magnifying-glass"></i></a>
             {% if 'profile_id' not in request.session %}
                 <a href="{% url 'signin' %}" class="tooltip" data-tooltip="Signin"><i class="fa-solid fa-right-to-bracket"></i></a>
             {% else %}
